@@ -18,9 +18,11 @@ namespace BarCodePrint
 
         public int AddSurvey(string name, int prefix, int max)
         {
-            foreach (survey sur in this.surveys)
+            name.Trim();
+            if (1 == Main.Config.CheckPrefixExist(prefix) | 1 == Main.Config.CheckNameExist(name))
             {
-                if (sur.name == name) return 0; //Такое имя уже есть
+                MessageBox.Show("Префикс или наименование уже существует!");
+                return 1;
             }
 
             survey LocSurvey = new survey();
@@ -31,7 +33,7 @@ namespace BarCodePrint
                 LocSurvey.max = max;
             }
             this.surveys.Add(LocSurvey);
-            return 1; //все штатно
+            return 0; //все штатно
         }
 
         public List<string> GetNameSurvey()
@@ -42,6 +44,46 @@ namespace BarCodePrint
                 list.Add(sur.name);
             }
             return list;
+        }
+
+        public List<int> GetPrefixList()
+        {
+            List<int> ListPrefix = new List<int>();
+            foreach (survey sur in this.surveys)
+            {
+                ListPrefix.Add(sur.prefix);
+            }
+            return ListPrefix;
+        }
+
+        private int CheckNameExist(string name)
+        {
+            int exist = 0;
+
+            foreach (string lname in Main.Config.GetNameSurvey())
+            {
+                if (lname == name)
+                {
+                    exist = 1;
+                    return exist;
+                }
+            }
+            return exist;
+        }
+
+        private int CheckPrefixExist(int prefix)
+        {
+            int exist = 0;
+
+            foreach (int lprefix in Main.Config.GetPrefixList())
+            {
+                if (prefix == lprefix)
+                {
+                    exist = 1;
+                    return exist;
+                }
+            }
+             return exist;
         }
 
         public survey GetSurvey(string name)

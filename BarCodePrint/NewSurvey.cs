@@ -12,12 +12,10 @@ namespace BarCodePrint
 {
     public partial class NewSurvey : Form
     {
-        private lab main;
         public NewSurvey()
         {
             InitializeComponent();
         }
-
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -33,7 +31,11 @@ namespace BarCodePrint
 
         private void button1_Click(object sender, EventArgs e)
         {
-            main.AddSurvey(textBox1.Text, int.Parse(textBox2.Text), 999999);            
+            if (1 == Main.Config.AddSurvey(textBox1.Text, int.Parse(textBox2.Text), 999999))
+            {
+                return;                
+            }
+            this.Close();            
         }
     }
 }

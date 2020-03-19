@@ -15,7 +15,7 @@ namespace BarCodePrint
     public partial class Main : Form
     {
         private System.Drawing.Image img1;
-        public lab Config = new lab();
+        static public lab Config = new lab();
 
         public Main()
         {
@@ -59,15 +59,11 @@ namespace BarCodePrint
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Config.AddSurvey("Моча", 11, 999999);
-            //Config.AddSurvey("Кал", 12, 999999);
-
             survey sur = new survey();
             sur = Config.GetSurvey(comboBox1.SelectedItem.ToString());
 
-            int pos;
+            int pos, code1;
             string code;
-            int code1;
 
             progressBar1.Minimum = sur.position;
             progressBar1.Maximum = sur.position + int.Parse(textBox1.Text);
@@ -86,6 +82,7 @@ namespace BarCodePrint
                 progressBar1.Value = pos;
             }
             sur.position = pos;
+            comboBox1_SelectedIndexChanged(this, e);
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
