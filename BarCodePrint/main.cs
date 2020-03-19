@@ -53,6 +53,7 @@ namespace BarCodePrint
             pd.PrinterSettings.PrinterName = printer;
             img1 = barcode.Encode(TYPE.CODE128C, code);
             pd.PrintPage += PrintPage;
+            pd.PrintController = new StandardPrintController(); //чтоб не показывалось окно "идет печать"
             pd.Print();
         }
 
@@ -68,6 +69,10 @@ namespace BarCodePrint
             string code;
             int code1;
 
+            progressBar1.Minimum = sur.position;
+            progressBar1.Maximum = sur.position + int.Parse(textBox1.Text);
+            progressBar1.Step = 1;
+
             for (pos = sur.position; pos < sur.position + int.Parse(textBox1.Text); ++pos)
             {
                 code = sur.prefix.ToString() + pos.ToString("D6");
@@ -78,6 +83,7 @@ namespace BarCodePrint
                 code = code1.ToString();
 
                 PrintCode(code, comboBox2.Text);
+                progressBar1.Value = pos;
             }
             sur.position = pos;
         }
