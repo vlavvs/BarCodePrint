@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace BarCodePrint
 {
@@ -83,7 +83,7 @@ namespace BarCodePrint
                     return exist;
                 }
             }
-             return exist;
+            return exist;
         }
 
         public survey GetSurvey(string name)
@@ -116,7 +116,7 @@ namespace BarCodePrint
             }
             catch
             {
-                MessageBox.Show("Не найден конфиг файл, будет создан новый!");          
+                MessageBox.Show("Не найден конфиг файл, будет создан новый!");
             }
             return clab;
         }
