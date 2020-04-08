@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Threading;
 using System.Windows.Forms;
@@ -42,7 +41,7 @@ namespace BarCodePrint
             Action action = () =>
             {
                 TaskConfig.cProgressBar.Minimum = TaskConfig.start;
-                TaskConfig.cProgressBar.Maximum = TaskConfig.start + TaskConfig.count-1;
+                TaskConfig.cProgressBar.Maximum = TaskConfig.start + TaskConfig.count - 1;
             };
 
             Invoke(action);
@@ -73,6 +72,12 @@ namespace BarCodePrint
             ProgressBar CurrentProgressBar = progressBar1;
             Label CurrentLabel = label7;
 
+            if (ActivePrinter.GetCountPrinterBusy() == 4)
+            {
+                MessageBox.Show("Достигнуто максимальное количество заданий");
+                return;
+            }
+
             switch (ActivePrinter.GetCountPrinterBusy())
             {
                 case 2:
@@ -100,7 +105,7 @@ namespace BarCodePrint
             CurrentLabel.Visible = true;
 
             //Подписываемся на события
-            Task.ProgressBarAction += ProgressBarPosition; 
+            Task.ProgressBarAction += ProgressBarPosition;
             Task.ProgressBarConfig += ProgressBarConfig;
             Task.TaskComplete += TaskComplete;
 
