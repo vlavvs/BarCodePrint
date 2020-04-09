@@ -65,6 +65,20 @@ namespace BarCodePrint
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (comboBox1.Text == "" | comboBox2.Text == "")
+            {
+                MessageBox.Show("Не выбран принтер или вид исследования!");
+                return;
+            }
+
+            int IntParse;
+
+            if (int.TryParse(textBox1.Text, out IntParse) == false)
+            {
+                MessageBox.Show("Не верно указанно количество!");
+                return;
+            }
+
             //получаем настройки исследований
             survey sur = new survey();
             sur = Config.GetSurvey(comboBox1.SelectedItem.ToString());
@@ -143,7 +157,7 @@ namespace BarCodePrint
             newform.ShowDialog();
         }
 
-        private void Main_Load(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
 
         }

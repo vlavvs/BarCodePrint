@@ -50,6 +50,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -210,6 +211,7 @@
             this.button4.TabIndex = 11;
             this.button4.Text = "Распечатать дубль";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // progressBar2
             // 
@@ -278,11 +280,22 @@
             this.label10.Text = "Задание 4";
             this.label10.Visible = false;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Enabled = false;
+            this.label11.Location = new System.Drawing.Point(537, 214);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(177, 17);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Автор: Вагурак Владимир";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 215);
+            this.ClientSize = new System.Drawing.Size(722, 231);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -309,7 +322,6 @@
             this.Name = "Main";
             this.Text = "Штрихкодератор";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
-            this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -341,6 +353,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }
 
